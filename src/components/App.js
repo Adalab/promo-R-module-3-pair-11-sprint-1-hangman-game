@@ -1,6 +1,7 @@
 import '../styles/App.scss';
 
 function App() {
+  const numberOfErrors = 0;
   return (
     <div className="page">
     <header>
