@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import '../styles/App.scss';
 
-function App() {
-  const numberOfErrors = 0;
+function App() {  
+  let [numberOfErrors, setNumberOffErrors] = useState(0);
+  function handleError(){
+    if (numberOfErrors <= 12){
+      setNumberOffErrors(numberOfErrors += 1); 
+      console.log(numberOfErrors);
+    }
+  } 
   return (
     <div className="page">
     <header>
@@ -23,6 +30,7 @@ function App() {
             <li className="letter">e</li>
             <li className="letter">r</li>
           </ul>
+          <button onClick={handleError}>Incrementar</button>
         </div>
         <div className="error">
           <h2 className="title">Letras falladas:</h2>
@@ -46,7 +54,7 @@ function App() {
           />
         </form>
       </section>
-      <section className="dummy error-5">
+      <section className={`dummy error-${numberOfErrors}`}>
         <span className="error-13 eye"></span>
         <span className="error-12 eye"></span>
         <span className="error-11 line"></span>
