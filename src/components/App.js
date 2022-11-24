@@ -2,13 +2,31 @@ import { useState } from 'react';
 import '../styles/App.scss';
 
 function App() {  
+  //Variables de estado
   let [numberOfErrors, setNumberOffErrors] = useState(0);
+
+  const [lastLetter, setLastLetter] = useState('');
+
+  const [errorMsg, setErrorMsg] = useState('');
+
+  //Función
   function handleError(){
     if (numberOfErrors <= 12){
       setNumberOffErrors(numberOfErrors += 1); 
       console.log(numberOfErrors);
     }
   } 
+
+  const handleInputLetter = (event) => {
+    const alphaExp = /^[a-zA-Z\u00C0-\u017F\s]+$/g;
+    if(event.target.value.match(alphaExp) || event.target.value === ''){
+      setLastLetter(event.target.value);
+      console.log('válido')
+    }else{
+      console.log('no válido');
+    }
+  }
+
   return (
     <div className="page">
     <header>
@@ -51,6 +69,7 @@ function App() {
             type="text"
             name="last-letter"
             id="last-letter"
+            onChange={handleInputLetter}
           />
         </form>
       </section>
